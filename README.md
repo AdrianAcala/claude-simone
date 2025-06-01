@@ -102,6 +102,71 @@ My solution: Start fresh for each task, but provide rich surrounding context. By
 
 The result is a task-based workflow where Claude always has the right context for the job at hand.
 
+## How I use it
+
+1. **Start with requirements**: I write down what I want to build in PRD documents
+2. **Break into tasks**: Each task should be doable in one Claude session (this is crucial!)
+3. **Let Claude work**: Use `do_task` and Claude follows the task structure
+4. **Review regularly**: After each task, review what was done
+5. **Track progress**: Completed tasks are renamed with `TX` prefix, project reviews go in `10_STATE_OF_PROJECT/`
+
+## Simone Commands Reference
+
+All Simone commands are available in Claude Code with the `/project:simone:` prefix:
+
+### Project Setup & Management
+- **`/project:simone:initialize`** - Interactive setup for new projects with adaptive, conversational guidance
+- **`/project:simone:plan_milestone`** - Create new milestones with proper structure and documentation
+- **`/project:simone:project_review`** - Generate timestamped project health reports and assessments
+
+### Sprint & Task Planning
+- **`/project:simone:create_sprints_from_milestone`** - Break down milestones into manageable sprints
+- **`/project:simone:create_sprint_tasks`** - Generate detailed tasks from sprint requirements
+- **`/project:simone:create_general_task`** - Create standalone tasks not tied to specific sprints
+
+### Task Execution & Development
+- **`/project:simone:do_task [task_id]`** - Execute tasks with full context validation and structured workflow
+- **`/project:simone:prime`** - Prepare Claude with current project context and focus
+
+### Quality Assurance
+- **`/project:simone:code_review [task_id]`** - Run comprehensive code review against requirements (zero tolerance for spec deviations)
+- **`/project:simone:test [scope]`** - Run tests with smart scope detection
+- **`/project:simone:testing_review`** - Comprehensive testing analysis and recommendations
+
+### Git Integration
+- **`/project:simone:commit [task_id] [YOLO]`** - Create logical git commits with smart filtering by task context
+  - Use task IDs like `T01_S02` to commit only related files
+  - Add `YOLO` to skip confirmations for faster iteration
+
+### Advanced Workflows
+- **`/project:simone:yolo`** - ⚠️ **Autonomous task execution** - Use with extreme caution, only in isolated environments
+- **`/project:simone:discuss_review`** - Interactive discussion about code review results and improvements
+
+### Command Usage Examples
+
+```bash
+# Set up a new project
+/project:simone:initialize
+
+# Create a new milestone
+/project:simone:plan_milestone "API Authentication System"
+
+# Break milestone into sprints
+/project:simone:create_sprints_from_milestone M02
+
+# Create a specific task
+/project:simone:create_general_task "Implement rate limiting middleware"
+
+# Execute a task
+/project:simone:do_task T01_S02
+
+# Review and commit task changes
+/project:simone:code_review T01_S02
+/project:simone:commit T01_S02
+
+# Run project health check
+/project:simone:project_review
+```
 ## Key Components
 
 ### 00_PROJECT_MANIFEST.md
