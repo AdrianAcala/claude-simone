@@ -167,6 +167,7 @@ All Simone commands are available in Claude Code with the `/project:simone:` pre
 # Run project health check
 /project:simone:project_review
 ```
+
 ## Key Components
 
 ### 00_PROJECT_MANIFEST.md
